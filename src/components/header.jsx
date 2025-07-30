@@ -16,6 +16,7 @@ function Header() {
           <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">About</a>
           <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">Services</a>
           <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">Contact</a>
+      
         </nav>
 
         {/* Mobile Menu Icon */}
@@ -40,6 +41,7 @@ function Header() {
           <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>About</a>
           <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Services</a>
           <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Contact</a>
+   
         </div>
       </div>
     </header>
