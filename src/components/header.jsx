@@ -12,10 +12,10 @@ function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">Home</a>
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">About</a>
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">Services</a>
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]">Contact</a>
+          <a href="/" className="text-[#1f2937] hover:text-[#189ab4]">Home</a>
+          <a href="#About" className="text-[#1f2937] hover:text-[#189ab4]">About</a>
+          <a href="#Services" className="text-[#1f2937] hover:text-[#189ab4]">Services</a>
+          <a href="#Contact" className="text-[#1f2937] hover:text-[#189ab4]">Contact</a>
       
         </nav>
 
@@ -37,10 +37,10 @@ function Header() {
           </button>
         </div>
         <div className="flex flex-col items-center h-full space-y-6 text-lg font-semibold">
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Home</a>
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>About</a>
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Services</a>
-          <a href="#" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Contact</a>
+          <a href="/" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Home</a>
+          <a href="#About" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>About</a>
+          <a href="#Services" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Services</a>
+          <a href="#Contact" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Contact</a>
    
         </div>
       </div>

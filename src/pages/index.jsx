@@ -89,7 +89,7 @@ export default function Home() {
   }
 
   return (
-    <div className="bg-white text-gray-800">
+    <div className="bg-white text-gray-800 scroll-smooth ">
       <Header />
       {timeLeft && (
         <div className="w-full bg-yellow-100 text-yellow-800 py-2 text-center font-semibold text-sm">
@@ -135,7 +135,7 @@ export default function Home() {
 
         {/* About Section */}
         <section className="bg-white py-16 px-4 md:px-10 lg:px-20">
-          <div className="max-w-6xl mx-auto space-y-16">
+          <div className="max-w-6xl mx-auto space-y-16" id="About">
             {/* Why Trumpinvestltd */}
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#05445e] mb-4">
@@ -185,7 +185,7 @@ export default function Home() {
             </div>
 
             {/* Vision */}
-            <div>
+            <div id="Services">
               <h2 className="text-3xl md:text-4xl font-bold text-[#05445e] mb-4">
                 Our Vision
               </h2>
@@ -299,7 +299,9 @@ export default function Home() {
           </form>
         </section>
       </main>
-      <Footer></Footer>
+      <section id="Contact">
+        <Footer></Footer>
+      </section>
     </div>
   );
 }
