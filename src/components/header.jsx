@@ -1,8 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
+
+useEffect(() => {
+  const stored = localStorage.getItem("loggedInUser");
+  if (stored) {
+    setUser(JSON.parse(stored));
+  }
+}, []);
+
+
 
   return (
     <header className="bg-[#f5f7fa] shadow-md fixed top-0 left-0 w-full z-50">
@@ -19,10 +29,16 @@ function Header() {
         </nav>
 
         {/* Desktop Auth Buttons */}
-        <div className='hidden md:flex gap-4'>
-          <button className='bg-teal-600 w-28 h-10 text-white capitalize font-semibold rounded-md'>log in</button>
-          <button className='border w-28 h-10 text-teal-600 capitalize font-semibold rounded-md'>sign in</button>
-        </div>
+        {user ? (
+          <div className="text-sm font-semibold text-[#189ab4]">
+            Welcome, {user.name || user.email}
+          </div>
+        ) : (
+          <div className="hidden md:flex gap-4">
+            <a href="/login" className="bg-teal-600 w-28 h-10 flex items-center justify-center text-white font-semibold rounded-md">log in</a>
+            <a href="/signup" className="border w-28 h-10 flex items-center justify-center text-teal-600 font-semibold rounded-md">sign in</a>
+          </div>
+        )}
 
         {/* Mobile Menu Icon */}
         <button onClick={() => setIsOpen(true)} className="md:hidden text-[#05445e]">
@@ -42,17 +58,21 @@ function Header() {
           </button>
         </div>
 
-        <div className="flex flex-col items-center  h-full space-y-6 text-lg font-semibold">
+        <div className="flex flex-col items-center h-full space-y-6 text-lg font-semibold">
           <a href="/" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Home</a>
           <a href="#About" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>About</a>
           <a href="#Services" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Services</a>
           <a href="#Contact" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Contact</a>
 
           {/* Mobile Auth Buttons */}
-          <div className="flex flex-col gap-4 mt-8 w-2/3">
-            <button className="bg-teal-600 w-full py-2 text-white capitalize font-semibold rounded-md">log in</button>
-            <button className="border w-full py-2 text-teal-600 capitalize font-semibold rounded-md">sign in</button>
-          </div>
+          {user ? (
+            <p className="text-lg font-semibold text-[#189ab4] mt-6">Welcome, {user.name || user.email}</p>
+          ) : (
+            <div className="flex flex-col gap-4 mt-8 w-2/3">
+              <a href="/login" className="bg-teal-600 py-2 text-white text-center rounded-md font-semibold">log in</a>
+              <a href="/signup" className="border py-2 text-teal-600 text-center rounded-md font-semibold">sign in</a>
+            </div>
+          )}
         </div>
       </div>
     </header>
