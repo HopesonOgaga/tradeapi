@@ -34,7 +34,7 @@ function Form() {
     localStorage.setItem("formDeadline", deadline.toISOString());
 
     // Redirect to home
-    navigate("/");
+    navigate("/payment");
   };
 
   return (

@@ -16,8 +16,13 @@ function Header() {
           <a href="#About" className="text-[#1f2937] hover:text-[#189ab4]">About</a>
           <a href="#Services" className="text-[#1f2937] hover:text-[#189ab4]">Services</a>
           <a href="#Contact" className="text-[#1f2937] hover:text-[#189ab4]">Contact</a>
-      
         </nav>
+
+        {/* Desktop Auth Buttons */}
+        <div className='hidden md:flex gap-4'>
+          <button className='bg-teal-600 w-28 h-10 text-white capitalize font-semibold rounded-md'>log in</button>
+          <button className='border w-28 h-10 text-teal-600 capitalize font-semibold rounded-md'>sign in</button>
+        </div>
 
         {/* Mobile Menu Icon */}
         <button onClick={() => setIsOpen(true)} className="md:hidden text-[#05445e]">
@@ -25,7 +30,7 @@ function Header() {
         </button>
       </div>
 
-      {/* Fullscreen Mobile Nav (Slide from Right) */}
+      {/* Fullscreen Mobile Nav */}
       <div
         className={`fixed top-0 right-0 h-full w-full bg-[#f5f7fa] transform transition-transform duration-300 z-50 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
@@ -36,12 +41,18 @@ function Header() {
             <X className="w-6 h-6" />
           </button>
         </div>
-        <div className="flex flex-col items-center h-full space-y-6 text-lg font-semibold">
+
+        <div className="flex flex-col items-center  h-full space-y-6 text-lg font-semibold">
           <a href="/" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Home</a>
           <a href="#About" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>About</a>
           <a href="#Services" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Services</a>
           <a href="#Contact" className="text-[#1f2937] hover:text-[#189ab4]" onClick={() => setIsOpen(false)}>Contact</a>
-   
+
+          {/* Mobile Auth Buttons */}
+          <div className="flex flex-col gap-4 mt-8 w-2/3">
+            <button className="bg-teal-600 w-full py-2 text-white capitalize font-semibold rounded-md">log in</button>
+            <button className="border w-full py-2 text-teal-600 capitalize font-semibold rounded-md">sign in</button>
+          </div>
         </div>
       </div>
     </header>
