@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+
+  // Set default user in localStorage if not already saved
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser) {
+      const defaultUser = {
+        name: "Barb Jeff",
+        email: "BarbJeff2025",
+        password: "BarbandJeffinhaven",
+      };
+      localStorage.setItem("user", JSON.stringify(defaultUser));
+    }
+  }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -45,11 +58,11 @@ export default function Login() {
               Email
             </label>
             <input
-              type="email"
+              type="text"
               id="email"
               name="email"
+              defaultValue="BarbJeff2025"
               className="w-full mt-1 border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-              placeholder="john@example.com"
               required
             />
           </div>
@@ -62,8 +75,8 @@ export default function Login() {
               type="password"
               id="password"
               name="password"
+              defaultValue="BarbandJeffinhaven"
               className="w-full mt-1 border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-              placeholder="••••••••"
               required
             />
           </div>
