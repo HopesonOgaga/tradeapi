@@ -213,14 +213,14 @@ export default function Home() {
 
               <div className="mt-4">
                 <p className="text-sm text-gray-500">Evaluation</p>
-                <p className="text-3xl font-bold text-black">$3,456,677</p>
+                <p className="text-3xl font-bold text-black">$9,677,545</p>
 
                 <div className="text-xs mt-3 space-y-1 text-gray-600">
                   <p>Deposit: $85,000</p>
                   <p>Date: Jul. 13, 2025</p>
                   <p>Withdrawal: Sept. 13, 2025</p>
                   <p className="text-black font-semibold">
-                    Est. withdrawal: $3,456,677
+                    Est. withdrawal: $9,677,545
                   </p>
                 </div>
               </div>
